@@ -1,0 +1,39 @@
+package binarysearch;
+
+public class BinarySearch
+{
+    public static void main(String[] args)
+    {
+        double [ ] a = {-12.3, -10.7, 3.0, 5.7, 9.5, 13.8,
+                        17.2, 20.3, 30.2, 4.0, 44, 50, 1};
+        
+        double searchFor = 20.3;
+        
+        int start = 0;              // first index in current segmen
+        int end = a.length - 1;     // last index
+        int mid = 0;                // midpoint of current segment
+        
+        boolean found = false;
+        
+        while (!found && start <= end)  // not found and have at least one
+                                        //   left to look at
+        {
+            mid = (start + end) / 2;    // get middle index
+            
+            // for demoing and debugging
+            System.out.println("At index " + mid + ", value is " + a[mid]);
+            
+            if (a[mid] == searchFor)      // found right here
+                found = true;
+            else if (a[mid] > searchFor)  // must be lower half
+                end = mid - 1;
+            else                          // must be in upper half
+                start = mid + 1;
+        }
+
+        if (found)
+            System.out.println("Found " + searchFor + " at index " + mid);
+        else
+            System.out.println(searchFor + " not found");
+    }
+}
